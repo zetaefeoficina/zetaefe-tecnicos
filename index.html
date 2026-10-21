@@ -37,12 +37,6 @@ select,input{width:100%;border:0;outline:0;background:transparent;font:inherit;f
 .tag{position:absolute;right:9px;top:9px;background:rgba(255,255,255,.72);padding:5px 8px;border-radius:999px;font-size:10px;font-weight:850;max-width:115px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .empty{background:#fff;border-radius:14px;padding:22px 14px;text-align:center;color:#77869a}
 .bottombar{height:56px;background:#fff;border-top:1px solid #dde5ee;box-shadow:0 -2px 10px rgba(0,0,0,.04);flex:0 0 auto}
-.time-row{display:flex;align-items:center;gap:6px;min-height:22px}
-.event-clock{display:inline-block;width:20px;height:20px;border:2px solid #2F80ED;border-radius:50%;position:relative;flex:0 0 20px;background:#EAF2FF;box-shadow:0 1px 3px rgba(0,0,0,.15)}
-.event-clock-hour,.event-clock-minute{position:absolute;left:50%;bottom:50%;transform-origin:bottom center;border-radius:2px}
-.event-clock-hour{width:2px;height:5px;background:#172033}
-.event-clock-minute{width:2px;height:7px;background:#EB5757}
-.event-clock-center{position:absolute;width:4px;height:4px;background:#2F80ED;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}
 </style>
 </head>
 <body>
@@ -79,19 +73,6 @@ select,input{width:100%;border:0;outline:0;background:transparent;font:inherit;f
   <main class="main">
     <div class="total"><span id="selLabel">TODOS</span><strong id="total">0 eventos</strong></div>
     <div id="agenda"></div>
-  </main>
-
-  <div class="bottombar"></div>
-</div>
-
-<script>
-const techs=[
-  "TODOS","Ángel Witos","Oscar Mora Sonido","Ruko Julian","Dani Sonotec",
-  "Ruben Soriano","Quino Músico","LUIS ","Guillermo","Gines","Sergio",
-  "Luisma","Bernardo","Jose Juan","Samuel","Shermo","Victoria","Iban","Sala"
-];
-
-const events=[
 {"title":"EL RARO DE LOS 90 - BURGOS","date":"2026-11-13","venue":"teatro cultural Caja de Burgos","time":"20:30","tech":""},
 {"title":"PERDIDO EN LOS 80 - ADRA","date":"2026-11-13","venue":"Auditorio Ciudad de Adra","time":"20:00","tech":""},
 {"title":"PERDIDO EN LOS 80 - ALCANTARILLA","date":"2026-11-14","venue":"Centro Cultural Infanta Elena","time":"21:00","tech":"Witos"},
@@ -185,25 +166,6 @@ function aliases(t){return {
   "Dani Sonotec":["dani sonotec","dani"],"Ruben Soriano":["ruben soriano","ruben"],
   "Quino Músico":["quino"],"LUIS ":["luis "]
 }[t] || [t];}
-function relojHora(time) {
-  const raw = String(time || "").trim();
-  const valido = /^([01]?\d|2[0-3]):[0-5]\d$/.test(raw);
-  const hora = valido ? raw : "12:00";
-  const [h, m] = hora.split(":").map(Number);
-  const angMin = m * 6;
-  const angHora = (h % 12) * 30 + m * 0.5;
-
-  return `
-    <span class="event-clock" aria-label="Hora ${hora}">
-      <span class="event-clock-hour" style="transform:translateX(-50%) rotate(${angHora}deg)"></span>
-      <span class="event-clock-minute" style="transform:translateX(-50%) rotate(${angMin}deg)"></span>
-      <span class="event-clock-center"></span>
-    </span>`;
-}
-function horaEvento(time){
-  const raw=String(time||"").trim();
-  return /^([01]?\d|2[0-3]):[0-5]\d$/.test(raw) ? raw : "12:00";
-}
 function matchTech(selected,text){ if(selected==="TODOS") return true; return aliases(selected).some(k=>norm(text).includes(norm(k))); }
 function isoWeekData(d){ const x=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())); const day=x.getUTCDay()||7; x.setUTCDate(x.getUTCDate()+4-day); const ys=new Date(Date.UTC(x.getUTCFullYear(),0,1)); const week=Math.ceil((((x-ys)/86400000)+1)/7); return {year:x.getUTCFullYear(),week}; }
 function mondayOfWeek(year,week){ const jan4=new Date(Date.UTC(year,0,4)); const day=jan4.getUTCDay()||7; const mon=new Date(jan4); mon.setUTCDate(jan4.getUTCDate()-day+1+(week-1)*7); return mon; }
@@ -225,7 +187,7 @@ function render(){
   const ag=document.getElementById("agenda");
   if(!filtered.length){ag.innerHTML='<div class="empty">No hay eventos para esta semana y este técnico.</div>'; return;}
   const groups={}; filtered.forEach(e=>(groups[e.date]??=[]).push(e));
-  ag.innerHTML=Object.entries(groups).map(([date,list])=>{ const d=new Date(date+"T12:00:00Z"); return `<section class="day"><div class="dayhead"><h2>${dayTitle(d)}</h2><span class="count">${list.length} ${list.length===1?"evento":"eventos"}</span></div>` + list.map(e=>{ const s=styleFor(e.tech); return `<article class="card" style="background:${s.bg};color:${s.fg}"><h3>${e.title}</h3><div class="tag" style="color:${s.fg}">${e.tech||"Sin técnico"}</div><div class="meta" style="color:${s.fg}"><span>📍 ${e.venue||"Sin recinto"}</span><span class="time-row">${relojHora(e.time)}<strong>${horaEvento(e.time)}</strong></span><span>🔧 ${e.tech||"Sin técnico"}</span></div></article>`; }).join("") + "</section>"; }).join("");
+  ag.innerHTML=Object.entries(groups).map(([date,list])=>{ const d=new Date(date+"T12:00:00Z"); return `<section class="day"><div class="dayhead"><h2>${dayTitle(d)}</h2><span class="count">${list.length} ${list.length===1?"evento":"eventos"}</span></div>` + list.map(e=>{ const s=styleFor(e.tech); return `<article class="card" style="background:${s.bg};color:${s.fg}"><h3>${e.title}</h3><div class="tag" style="color:${s.fg}">${e.tech||"Sin técnico"}</div><div class="meta" style="color:${s.fg}"><span>📍 ${e.venue||"Sin recinto"}</span>${e.time?`<span>🕒 ${e.time}</span>`:""}<span>🔧 ${e.tech||"Sin técnico"}</span></div></article>`; }).join("") + "</section>"; }).join("");
 }
 [wsel,tsel,year].forEach(el=>el.addEventListener("change",render));
 document.getElementById("prev").onclick=()=>{let w=+wsel.value,y=+year.value; if(w===1){w=53;y--} else w--; wsel.value=w; year.value=y; render();};
