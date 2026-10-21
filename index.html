@@ -73,49 +73,6 @@ select,input{width:100%;border:0;outline:0;background:transparent;font:inherit;f
   <main class="main">
     <div class="total"><span id="selLabel">TODOS</span><strong id="total">0 eventos</strong></div>
     <div id="agenda"></div>
-  </main>
-
-  <div class="bottombar"></div>
-</div>
-
-<script>
-const techs=["TODOS","BERNARDO","JOSE JUAN","LUISMA","SAMUEL","SERGIO","GUILLERMO","OSCAR","GINES","WITOS"];
-const events=[
-{"title":"MIKI DKAI - ONDA","date":"2026-10-21","venue":"Teatro Mónaco de Onda","time":"19:00h","tech":"PACO Tecnico Teatro Valencia"},
-{"title":"BOUBBLE WORLD - MOLINA DEL SEGURA","date":"2026-10-23","venue":"Villa de Molina","time":"19:00","tech":"Guillermo"},
-{"title":"PERDIDO EN LOS 80 - EL ALGAR","date":"2026-10-23","venue":"Teatro circo del algar","time":"20:00","tech":"Witos"},
-{"title":"EL RARO DE LOS 90 - VALENCIA","date":"2026-10-23","venue":"Teatro Olympia","time":"21:00","tech":"Luisma"},
-{"title":"EL RARO DE LOS 90 - BULLAS","date":"2026-10-24","venue":"Auditorio casa de Cultura de Bullas","time":"","tech":"Luisma"},
-{"title":"CIENTOCERO - SAN VICENTE DE RASPEIG","date":"2026-10-24","venue":"Plaza España","time":"22:00","tech":"GINES"},
-{"title":"El Pequeño Mundo de la Música - BENIEL","date":"2026-10-24","venue":"Teatro Beniel","time":"","tech":"Bernardo"},
-{"title":"PERDIDO EN LOS 80 - CÓRDOBA","date":"2026-10-25","venue":"Teatro El Brillante Córdoba","time":"17:00","tech":"Witos"},
-{"title":"DREAMING BUBBLES - MIJAS","date":"2026-10-25","venue":"Teatro Manuel España","time":"19:00","tech":"Guillermo"},
-{"title":"IMAGILUSION - SAN FULGENCIO","date":"2026-10-25","venue":"Teatro Cardenal Belluga","time":"18:00","tech":"Sergio"},
-{"title":"EL RARO DE LOS 90 - CARTAGENA","date":"2026-10-25","venue":"Auditorio El Batel de Cartagena","time":"","tech":"Luisma"},
-{"title":"MAQUINA DE CUENTOS - BENAHAVIS","date":"2026-10-25","venue":"Salón de Actos","time":"19:00","tech":"Bernardo"},
-{"title":"EL LOCO SHOW- MEMBRILLA","date":"2026-10-25","venue":"Casa de la Cultura","time":"18:30","tech":"Jose Juan"},
-{"title":"PERDIDO EN LOS 80 - PETRER","date":"2026-10-29","venue":"Teatro Cervantes C/ Gabriel Payà, 18, 03610 Petrer, Alicante","time":"21:30h","tech":"Witos"},
-{"title":"EL LOCO SHOW - VILLALBA DEL REY","date":"2026-10-31","venue":"Casa de cultura","time":"19:00","tech":"Jose Juan"},
-{"title":"ESPECIAL HALLOWEEN - ALMORADÍ","date":"2026-10-31","venue":"Parque Béjar","time":"19:00","tech":"Samuel"},
-{"title":"ARYEL ALTAMAR HIPNOSIS - VALENCIA","date":"2026-10-31","venue":"Teatro la Placeta","time":"22:00","tech":"Jose Zona Valencia 689 24 43 66"},
-{"title":"PERDIDO EN LOS 80 - SANTOÑA","date":"2026-10-31","venue":"Teatro Casino Liceo","time":"20:00","tech":"Witos"},
-{"title":"ARYEL ALTAMAR - HIPNOSIS - ASPE","date":"2026-11-01","venue":"Teatro Wagner","time":"19:00","tech":"Oscar"},
-{"title":"PERDIDO EN LOS 80 - VIOÑO","date":"2026-11-01","venue":"TEATRO VIMENOR","time":"","tech":"Witos"},
-{"title":"EL RARO DE LOS 90 - CALDÉS","date":"2026-11-06","venue":"Casino de Caldés","time":"20:00h","tech":"Luisma"},
-{"title":"IMAGILUSION - GRANADA","date":"2026-11-06","venue":"Auditorio El Carmelo","time":"20:00","tech":"Sergio"},
-{"title":"GABINO DIEGO - CALLOSA D'EN SARRIÀ","date":"2026-11-07","venue":"","time":"","tech":""},
-{"title":"IMAGILUSION - MALAGA","date":"2026-11-07","venue":"Auditorio AM","time":"20:00","tech":"Sergio"},
-{"title":"DREAMING BUBBLES - ALMUÑECAR","date":"2026-11-07","venue":"Teatro Martín Recuerda (Casa de la Cultura)","time":"20:00","tech":"Guillermo"},
-{"title":"PERDIDO EN LOS 80 - ALGUAZAS","date":"2026-11-07","venue":"","time":"","tech":""},
-{"title":"EL RARO DE LOS 90 - SAN JUAN","date":"2026-11-07","venue":"","time":"","tech":""},
-{"title":"BEATRIZ RICO - ELCHE","date":"2026-11-07","venue":"La Lonja","time":"20:00","tech":"???"},
-{"title":"PERDIDO EN LOS 80 - IBIZA","date":"2026-11-08","venue":"","time":"","tech":""},
-{"title":"DREAMING BUBBLES - VELEZ RUBIO","date":"2026-11-08","venue":"VELEZ RUBIO","time":"No especificada","tech":""},
-{"title":"ARYEL ALTAMAR MENTALISMO- ORIHUELA","date":"2026-11-08","venue":"","time":"","tech":""},
-{"title":"IMAGILUSION - CADIZ","date":"2026-11-08","venue":"Auditorio Esclavas Cádiz","time":"18:00","tech":""},
-{"title":"EL LOCO SHOW - YUNQUERA DE HENARES","date":"2026-11-11","venue":"","time":"","tech":""},
-{"title":"EL LOCO SHOW - ALMENSILLA","date":"2026-11-12","venue":"","time":"20:30","tech":""},
-{"title":"CAROL TOMAS - EGB - Arganda Del Rey","date":"2026-11-13","venue":"Auditorio Montserrat Caballé","time":"21:00","tech":""},
 {"title":"EL RARO DE LOS 90 - BURGOS","date":"2026-11-13","venue":"teatro cultural Caja de Burgos","time":"20:30","tech":""},
 {"title":"PERDIDO EN LOS 80 - ADRA","date":"2026-11-13","venue":"Auditorio Ciudad de Adra","time":"20:00","tech":""},
 {"title":"PERDIDO EN LOS 80 - ALCANTARILLA","date":"2026-11-14","venue":"Centro Cultural Infanta Elena","time":"21:00","tech":"Witos"},
@@ -209,6 +166,24 @@ function aliases(t){return {
   "Dani Sonotec":["dani sonotec","dani"],"Ruben Soriano":["ruben soriano","ruben"],
   "Quino Músico":["quino"],"LUIS ":["luis "]
 }[t] || [t];}
+function relojHora(time){
+  const raw=(time||"").trim();
+  const valido=/^(?:[01]?\d|2[0-3]):[0-5]\d$/.test(raw);
+  const hora=valido ? raw : "12:00";
+  const [h,m]=hora.split(":").map(Number);
+  const angMin=m*6;
+  const angHora=(h%12)*30+m*0.5;
+
+  return `<span style="display:inline-block;width:20px;height:20px;border:2px solid #2F80ED;border-radius:50%;position:relative;vertical-align:middle;margin-right:6px;background:#EAF2FF;box-shadow:0 1px 3px rgba(0,0,0,.15)">
+    <span style="position:absolute;width:2px;height:5px;background:#172033;left:50%;bottom:50%;transform-origin:bottom center;transform:translateX(-50%) rotate(${angHora}deg);border-radius:2px"></span>
+    <span style="position:absolute;width:2px;height:7px;background:#EB5757;left:50%;bottom:50%;transform-origin:bottom center;transform:translateX(-50%) rotate(${angMin}deg);border-radius:2px"></span>
+    <span style="position:absolute;width:4px;height:4px;background:#2F80ED;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)"></span>
+  </span>`;
+}
+function horaEvento(time){
+  const raw=(time||"").trim();
+  return /^(?:[01]?\d|2[0-3]):[0-5]\d$/.test(raw) ? raw : "12:00";
+}
 function matchTech(selected,text){ if(selected==="TODOS") return true; return aliases(selected).some(k=>norm(text).includes(norm(k))); }
 function isoWeekData(d){ const x=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())); const day=x.getUTCDay()||7; x.setUTCDate(x.getUTCDate()+4-day); const ys=new Date(Date.UTC(x.getUTCFullYear(),0,1)); const week=Math.ceil((((x-ys)/86400000)+1)/7); return {year:x.getUTCFullYear(),week}; }
 function mondayOfWeek(year,week){ const jan4=new Date(Date.UTC(year,0,4)); const day=jan4.getUTCDay()||7; const mon=new Date(jan4); mon.setUTCDate(jan4.getUTCDate()-day+1+(week-1)*7); return mon; }
@@ -230,7 +205,7 @@ function render(){
   const ag=document.getElementById("agenda");
   if(!filtered.length){ag.innerHTML='<div class="empty">No hay eventos para esta semana y este técnico.</div>'; return;}
   const groups={}; filtered.forEach(e=>(groups[e.date]??=[]).push(e));
-  ag.innerHTML=Object.entries(groups).map(([date,list])=>{ const d=new Date(date+"T12:00:00Z"); return `<section class="day"><div class="dayhead"><h2>${dayTitle(d)}</h2><span class="count">${list.length} ${list.length===1?"evento":"eventos"}</span></div>` + list.map(e=>{ const s=styleFor(e.tech); return `<article class="card" style="background:${s.bg};color:${s.fg}"><h3>${e.title}</h3><div class="tag" style="color:${s.fg}">${e.tech||"Sin técnico"}</div><div class="meta" style="color:${s.fg}"><span>📍 ${e.venue||"Sin recinto"}</span>${e.time?`<span>🕒 ${e.time}</span>`:""}<span>🔧 ${e.tech||"Sin técnico"}</span></div></article>`; }).join("") + "</section>"; }).join("");
+  ag.innerHTML=Object.entries(groups).map(([date,list])=>{ const d=new Date(date+"T12:00:00Z"); return `<section class="day"><div class="dayhead"><h2>${dayTitle(d)}</h2><span class="count">${list.length} ${list.length===1?"evento":"eventos"}</span></div>` + list.map(e=>{ const s=styleFor(e.tech); return `<article class="card" style="background:${s.bg};color:${s.fg}"><h3>${e.title}</h3><div class="tag" style="color:${s.fg}">${e.tech||"Sin técnico"}</div><div class="meta" style="color:${s.fg}"><span>📍 ${e.venue||"Sin recinto"}</span><span>${relojHora(e.time)} ${horaEvento(e.time)}</span><span>🔧 ${e.tech||"Sin técnico"}</span></div></article>`; }).join("") + "</section>"; }).join("");
 }
 [wsel,tsel,year].forEach(el=>el.addEventListener("change",render));
 document.getElementById("prev").onclick=()=>{let w=+wsel.value,y=+year.value; if(w===1){w=53;y--} else w--; wsel.value=w; year.value=y; render();};
