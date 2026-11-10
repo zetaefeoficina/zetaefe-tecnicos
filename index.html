@@ -372,7 +372,7 @@ function eventMatchesTech(eventTech, selectedTech){
   return normText(eventTech).includes(normText(selectedTech));
 }
 techs.forEach(t=>{const o=document.createElement("option");o.value=t;o.textContent=t.trim();tsel.appendChild(o)})
-wsel.value="43"; year.value="2026"; tsel.value="TODOS";
+wsel.value="46"; year.value="2026"; tsel.value="TODOS";
 
 function render(){
   const w=+wsel.value, y=+year.value, tech=tsel.value;
